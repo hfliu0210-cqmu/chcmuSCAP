@@ -283,7 +283,7 @@ def main():
         # 读取同目录下 unit.png 图片
         if os.path.exists("unit.png"):
             logo_img = Image.open("unit.png")
-            st.image(logo_img, use_container_width=True)
+            st.image(logo_img, use_column_width=True)
         else:
             st.text("请将unit.png放入程序同文件夹")
     with top_col2:
@@ -332,7 +332,7 @@ def main():
             X_proc, shap_all, base_val = infer_tool.infer_single_sample(input_data)
             img = infer_tool.plot_single_force(X_proc, shap_all, base_val)
         st.subheader("当前患者样本SCAP预测SHAP贡献力图结果（SCAP-Predicted SHAP Force Plot for the Patient）")
-        st.image(img, caption="SCAP样本SHAP力图（SCAP-Predicted SHAP Force Plot）", use_container_width=True)
+        st.image(img, caption="SCAP样本SHAP力图（SCAP-Predicted SHAP Force Plot）", use_column_width=True)
         # 图片下载
         buf = BytesIO()
         img.save(buf, format="png")
