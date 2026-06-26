@@ -15,7 +15,6 @@ from sklearn.impute import SimpleImputer
 from sklearn.feature_selection import VarianceThreshold
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import RandomizedSearchCV, train_test_split
-import statsmodels.api as sm
 from io import BytesIO
 import streamlit as st
 from PIL import Image
