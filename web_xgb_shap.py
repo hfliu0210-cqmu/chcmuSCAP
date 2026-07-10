@@ -20,7 +20,7 @@ import streamlit as st
 from PIL import Image
 
 # ========== Streamlit强制首行页面配置 ==========
-st.set_page_config(page_title="儿童重症社区获得性肺炎风险计算系统（SCAP Risk Calculation System - SpRCS）", layout="wide")
+st.set_page_config(page_title="Pediatric SCAP Risk Calculation System - SpRCS", layout="wide")
 
 # 网页无GUI绘图后端
 plt.switch_backend("Agg")
@@ -51,16 +51,16 @@ CONFIG = {
     "train_data_name": "Pearson保留线性+分类(病原学)的副本(1).xlsx",
     # 特征映射：{原始模型特征名: 页面中文显示名称+单位说明}
     "feature_map": [
-        ("Age", "年龄（Age，单位：月）"),
-        ("Wheeze", "喘息（Wheeze，1=有，0=无）"),
-        ("Underlying condition", "基础病（Underlying condition，1=有，0=无）"),
-        ("Lymphocyte count", "淋巴细胞计数（Lymphocyte count，10^9/L）"),
-        ("MCHC", "平均红细胞血红蛋白浓度（MCHC，g/L）"),
-        ("RDW-CV", "红细胞分布宽度-CV（RDW-CV，%）"),
-        ("Albumin", "白蛋白（Albumin，g/L）"),
-        ("K+", "血清钾（K+，mmol/L）"),
-        ("Cl-", "血清氯（Cl-，mmol/L）"),
-        ("NLR", "中性-淋巴细胞比（NLR）")
+        ("Age", "Age (month）"),
+        ("Wheeze", "Wheeze (1=yes，0=no)"),
+        ("Underlying condition", "Underlying condition (1=yes，0=no)"),
+        ("Lymphocyte count", "Lymphocyte count (10^9/L)"),
+        ("MCHC", "MCHC (g/L)"),
+        ("RDW-CV", "RDW-CV (%)"),
+        ("Albumin", "Albumin (g/L)"),
+        ("K+", "K+ (mmol/L)"),
+        ("Cl-", "Cl- (mmol/L)"),
+        ("NLR", "NLR")
     ]
 }
 
@@ -287,7 +287,7 @@ def main():
         else:
             st.text("请将unit.png放入程序同文件夹")
     with top_col2:
-        st.title("儿童重症社区获得性肺炎风险计算系统（SCAP Risk Calculation System - SpRCS）")
+        st.title("Pediatric SCAP Risk Calculation System - SpRCS")
     st.divider()
 
     infer_tool = FixedXGBInfer()
@@ -309,7 +309,7 @@ def main():
 
     # 已加载固定模型：手动输入表单
     infer_tool.load_saved_model()
-    st.success("✅ 已加载SCAP预训练预测模型，请在下方录入患者各项临床指标（The SCAP pre-training prediction model has been loaded. Please enter the patient's indicators below）")
+    st.success("✅ The SCAP pre-trained prediction model has been loaded. Please enter the patient's indicators below")
     st.divider()
 
     input_data = {}
@@ -325,19 +325,19 @@ def main():
             input_data[raw_name] = st.number_input(label=show_name, value=0.0, step=0.01)
 
     st.divider()
-    run_btn = st.button("生成SCAP预测SHAP个体力图（Generate SCAP-predicted SHAP Force Plot）", type="primary")
+    run_btn = st.button("Generate SCAP-predicted SHAP Force Plot", type="primary")
 
     if run_btn:
         with st.spinner("模型预测中，正在生成SHAP贡献力图..."):
             X_proc, shap_all, base_val = infer_tool.infer_single_sample(input_data)
             img = infer_tool.plot_single_force(X_proc, shap_all, base_val)
-        st.subheader("当前患者样本SCAP预测SHAP贡献力图结果（SCAP-Predicted SHAP Force Plot for the Patient）")
-        st.image(img, caption="SCAP样本SHAP力图（SCAP-Predicted SHAP Force Plot）", use_column_width=True)
+        st.subheader("SCAP-Predicted SHAP Force Plot for the Patient")
+        st.image(img, caption="SCAP-Predicted SHAP Force Plot", use_column_width=True)
         # 图片下载
         buf = BytesIO()
         img.save(buf, format="png")
         st.download_button(
-            label="下载本次SCAP预测图（Download SCAP_Predicted_SHAP_Force_Plot）",
+            label="Download SCAP_Predicted_SHAP_Force_Plot",
             data=buf.getvalue(),
             file_name="SCAP_Predicted_SHAP_Force_Plot.png",
             mime="image/png"
