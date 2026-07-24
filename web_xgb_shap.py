@@ -53,7 +53,7 @@ CONFIG = {
     "feature_map": [
         ("Age", "Age (month）"),
         ("Wheeze", "Wheeze (1=yes，0=no)"),
-        ("Underlying condition", "Underlying condition (1=yes，0=no)"),
+        ("Underlying condition", "Underlying condition (congenital heart diseases, inborn errors of immunity, malignant tumors, or previous organ transplantation; 1=yes，0=no)"),
         ("Lymphocyte count", "Lymphocyte count (10^9/L)"),
         ("MCHC", "MCHC (g/L)"),
         ("RDW-CV", "RDW-CV (%)"),
