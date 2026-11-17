@@ -538,6 +538,134 @@ class FixedXGBInfer:
 
 def main():
 
+    # ===================== SCAP网页主题样式 =====================
+    st.markdown(
+        """
+        <style>
+        /* Overall page: soft sage-gray research interface */
+        html, body, [data-testid="stAppViewContainer"] {
+            background: #F2F6F3 !important;
+            color: #263B34;
+        }
+        [data-testid="stAppViewContainer"] > .main,
+        [data-testid="stMain"] {
+            background: #F2F6F3 !important;
+        }
+        [data-testid="stHeader"] {
+            background: rgba(242, 246, 243, 0.96) !important;
+        }
+        .block-container {
+            max-width: 1500px;
+            padding-top: 1.8rem;
+            padding-bottom: 2.5rem;
+        }
+
+        /* Main headings */
+        h1, h2, h3 {
+            color: #245B4A !important;
+        }
+        [data-testid="stMarkdownContainer"] p {
+            color: #344A41;
+        }
+
+        /* Input fields */
+        [data-testid="stTextInput"] input,
+        [data-testid="stSelectbox"] div[data-baseweb="select"] > div {
+            background: #FFFFFF !important;
+            border: 1px solid #D5E1D9 !important;
+            border-radius: 8px !important;
+        }
+        [data-testid="stTextInput"] input:focus {
+            border-color: #4F8872 !important;
+            box-shadow: 0 0 0 1px #4F8872 !important;
+        }
+
+        /* Buttons */
+        div.stButton > button,
+        div.stDownloadButton > button {
+            background: #2F6B57 !important;
+            color: #FFFFFF !important;
+            border: 1px solid #2F6B57 !important;
+            border-radius: 7px !important;
+            font-weight: 600 !important;
+            transition: background 0.2s ease;
+        }
+        div.stButton > button:hover,
+        div.stDownloadButton > button:hover {
+            background: #245443 !important;
+            border-color: #245443 !important;
+            color: #FFFFFF !important;
+        }
+
+        /* Status messages */
+        [data-testid="stAlert"] {
+            border-radius: 8px;
+            border: 1px solid #DCE7DF;
+        }
+
+        /* Subtle separators and data surfaces */
+        hr {
+            border-color: #D8E3DC !important;
+        }
+        [data-testid="stDataFrame"],
+        [data-testid="stTable"] {
+            background: #FFFFFF;
+            border-radius: 8px;
+        }
+
+        /* Purpose statement and four information tabs */
+        .scap-purpose {
+            background: #E7F0EA;
+            border-left: 5px solid #2F6B57;
+            padding: 13px 17px;
+            margin: 16px 0 18px 0;
+            border-radius: 6px;
+            color: #245B4A;
+            font-size: 19px;
+            font-weight: 600;
+            line-height: 1.5;
+        }
+        div[data-testid="stTabs"] div[role="tablist"] {
+            gap: 8px;
+            border-bottom: 1px solid #D5E1D9;
+        }
+        div[data-testid="stTabs"] button[role="tab"] {
+            background: #E7EFE9 !important;
+            color: #315B4A !important;
+            border: 1px solid #D5E1D9 !important;
+            border-radius: 6px 6px 0 0 !important;
+            padding: 9px 14px !important;
+            font-size: 15px !important;
+            font-weight: 700 !important;
+        }
+        div[data-testid="stTabs"] button[role="tab"] *,
+        div[data-testid="stTabs"] button[role="tab"] p,
+        div[data-testid="stTabs"] button[role="tab"] span {
+            font-weight: 700 !important;
+        }
+        div[data-testid="stTabs"] button[role="tab"][aria-selected="true"] {
+            background: #2F6B57 !important;
+            color: #FFFFFF !important;
+            border-color: #2F6B57 !important;
+        }
+        div[data-testid="stTabs"] div[role="tabpanel"] {
+            background: #FFFFFF !important;
+            border: 1px solid #DCE7DF !important;
+            border-top: 3px solid #2F6B57 !important;
+            border-radius: 0 0 7px 7px !important;
+            padding: 18px 20px !important;
+        }
+
+        /* Keep the page logo and result images clean */
+        [data-testid="stImage"] img {
+            border-radius: 6px;
+        }
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+    # ==========================================================
+
     # 顶部左右分栏：左侧放单位图片，右侧放标题
 
     top_col1, top_col2 = st.columns([1, 2])
@@ -597,6 +725,89 @@ def main():
     infer_tool.load_saved_model()
 
     st.success("✅ The SCAP pre-trained prediction model has been loaded. Please enter the patient's indicators below")
+
+    st.markdown(
+        """
+        <div class="scap-purpose">
+            This model is designed to enable early prediction of the risk of progression to SCAP in children admitted with CAP.
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+    tab_definition, tab_development, tab_validation, tab_developers = st.tabs([
+        "Definition of CAP and SCAP",
+        "Introduction to model development cohort",
+        "Introduction to model validation cohorts",
+        "Introduction of the main developers"
+    ])
+
+    with tab_definition:
+        st.markdown(
+            """
+            The diagnosis of CAP and its clinical severity classification (SCAP or NSCAP)
+            were performed according to the World Health Organization guideline.
+            """
+        )
+
+    with tab_development:
+        st.markdown(
+            """
+            Model development used a large retrospective longitudinal cohort of **25,426
+            children admitted with CAP** at the **National Clinical Pediatric Research Center
+            in China** during **2012–2025**.
+
+            The cohort comprised **12,713 cases who progressed from CAP to SCAP during
+            hospitalization** and **12,713 randomly selected non-severe CAP cases**.
+            """
+        )
+
+    with tab_validation:
+        st.markdown(
+            """
+            External multi-center validation was conducted in three representative large
+            tertiary-A specialist pediatric hospitals in other provinces (**Xi'an Children's
+            Hospital, n = 100; Kunming Children's Hospital, n = 100; Shenzhen Children's
+            Hospital, n = 250**) and a local primary general hospital in Chongqing
+            (**People's Hospital of Shapingba District, n = 100**).
+            """
+        )
+
+    with tab_developers:
+        st.markdown(
+            """
+            **Hai-Feng Liu, MD, PhD**
+
+            Postdoctoral fellow at the National Clinical Research Center for Children and
+            Adolescents' Health and Diseases and Children's Hospital of Chongqing Medical
+            University. His research focuses on severe pediatric infections and the
+            development of artificial intelligence-based clinical models. He has published
+            13 SCI-indexed articles as first author.
+
+            **Hongmin Fu, MD, PhD**
+
+            Professor and doctoral supervisor at the Affiliated Children's Hospital of
+            Kunming Medical University. He serves as Chair of the Pediatric Society of
+            Yunnan Medical Association and Director of the Critical Care Collaborative Group
+            of the Respiratory Society of the Chinese Medical Association's Pediatric Branch.
+            His work focuses on pediatric respiratory critical care.
+
+            **Enmei Liu, MD, PhD**
+
+            Vice President of Chongqing Medical University, doctoral and postdoctoral
+            supervisor, and Chief Scientist of the National Key Research and Development
+            Program of China. Her research focuses on respiratory virus molecular
+            epidemiology, early-warning models, and pathogenesis in children.
+
+            **Na Zang, MD, PhD**
+
+            Chief physician and professor at the National Clinical Research Center for
+            Children and Adolescents' Health and Diseases and Children's Hospital of
+            Chongqing Medical University. Her research focuses on severe respiratory viral
+            infections in children, chronic cough, and allergic diseases.
+            """
+        )
+
 
     st.divider()
 
@@ -663,7 +874,7 @@ def main():
                 for error in input_errors:
                     st.error(error)
             else:
-                with st.spinner("模型预测中，正在生成SHAP贡献力图..."):
+                with st.spinner("The model is in the process of prediction and is generating the SHAP Force Plot..."):
                     X_proc, shap_all, base_val = infer_tool.infer_single_sample(input_data)
                     img = infer_tool.plot_single_force(X_proc, shap_all, base_val)
                 st.subheader("SCAP-Predicted SHAP Force Plot for the Patient")
