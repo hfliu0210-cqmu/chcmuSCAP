@@ -765,7 +765,7 @@ div.stDownloadButton > button:hover {
             in China** during **2012–2025**.
 
             The cohort comprised **12,713 cases who progressed from CAP to SCAP during
-            hospitalization** and **12,713 randomly selected non-severe CAP cases**.
+            hospitalization(8.0 [3.0, 20.0] months and a male proportion of 63.8%)** and **12,713 randomly selected non-severe CAP cases(13.0 [5.0, 38.0] months with a male proportion of 60.5%)**.
             """
         )
 
