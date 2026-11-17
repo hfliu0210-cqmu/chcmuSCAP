@@ -627,7 +627,7 @@ div.stDownloadButton > button:hover {
             padding: 13px 17px;
             margin: 16px 0 18px 0;
             border-radius: 6px;
-            color: #245B4A;
+            color: #C62828;
             font-size: 19px;
             font-weight: 600;
             line-height: 1.5;
