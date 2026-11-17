@@ -580,22 +580,29 @@ def main():
             box-shadow: 0 0 0 1px #4F8872 !important;
         }
 
-        /* Buttons */
-        div.stButton > button,
-        div.stDownloadButton > button {
-            background: #2F6B57 !important;
-            color: #FFFFFF !important;
-            border: 1px solid #2F6B57 !important;
-            border-radius: 7px !important;
-            font-weight: 600 !important;
-            transition: background 0.2s ease;
-        }
-        div.stButton > button:hover,
-        div.stDownloadButton > button:hover {
-            background: #245443 !important;
-            border-color: #245443 !important;
-            color: #FFFFFF !important;
-        }
+       /* Red buttons with white text */
+div.stButton > button,
+div.stDownloadButton > button {
+    background: #C62828 !important;
+    color: #FFFFFF !important;
+    border: 1px solid #C62828 !important;
+    border-radius: 7px !important;
+    font-weight: 600 !important;
+}
+
+/* Ensure inner button text is white */
+div.stButton > button *,
+div.stDownloadButton > button * {
+    color: #FFFFFF !important;
+}
+
+/* Hover effect */
+div.stButton > button:hover,
+div.stDownloadButton > button:hover {
+    background: #A61B1B !important;
+    border-color: #A61B1B !important;
+    color: #FFFFFF !important;
+}
 
         /* Status messages */
         [data-testid="stAlert"] {
@@ -616,7 +623,7 @@ def main():
         /* Purpose statement and four information tabs */
         .scap-purpose {
             background: #E7F0EA;
-            border-left: 5px solid #2F6B57;
+            border-left: 5px solid #C62828;
             padding: 13px 17px;
             margin: 16px 0 18px 0;
             border-radius: 6px;
