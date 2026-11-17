@@ -768,6 +768,8 @@ div.stDownloadButton > button:hover {
 
             The cohort comprised **12,713 cases who progressed from CAP to SCAP during
             hospitalization(8.0 [3.0, 20.0] months and a male proportion of 63.8%)** and **12,713 randomly selected non-severe CAP cases(13.0 [5.0, 38.0] months with a male proportion of 60.5%)**.
+
+            All data used in the model development process were features measured **within 24 hours of admission**.
             """
         )
 
@@ -783,39 +785,64 @@ div.stDownloadButton > button:hover {
         )
 
     with tab_developers:
-        st.markdown(
-            """
-            **Hai-Feng Liu, MD, PhD**
+        developers = [
+            {
+                "name": "Hai-Feng Liu, MD, PhD",
+                "photo": "hai_feng_liu.jpg",
+                "bio": """Postdoctoral fellow at the National Clinical Research Center for Children and
+                Adolescents' Health and Diseases and Children's Hospital of Chongqing Medical
+                University. His research focuses on severe pediatric infections and the
+                development of artificial intelligence-based clinical models. He has published
+                13 SCI-indexed articles as first author."""
+            },
+            {
+                "name": "Hongmin Fu, MD, PhD",
+                "photo": "hongmin_fu.jpg",
+                "bio": """Professor and doctoral supervisor at the Affiliated Children's Hospital of
+                Kunming Medical University. He serves as Chair of the Pediatric Society of
+                Yunnan Medical Association and Director of the Critical Care Collaborative Group
+                of the Respiratory Society of the Chinese Medical Association's Pediatric Branch.
+                His work focuses on pediatric respiratory critical care."""
+            },
+            {
+                "name": "Enmei Liu, MD, PhD",
+                "photo": "enmei_liu.jpg",
+                "bio": """Vice President of Chongqing Medical University, doctoral and postdoctoral
+                supervisor, and Chief Scientist of the National Key Research and Development
+                Program of China. Her research focuses on respiratory virus molecular
+                epidemiology, early-warning models, and pathogenesis in children."""
+            },
+            {
+                "name": "Na Zang, MD, PhD",
+                "photo": "na_zang.jpg",
+                "bio": """Chief physician and professor at the National Clinical Research Center for
+                Children and Adolescents' Health and Diseases and Children's Hospital of
+                Chongqing Medical University. Her research focuses on severe respiratory viral
+                infections in children, chronic cough, and allergic diseases."""
+            }
+        ]
 
-            Postdoctoral fellow at the National Clinical Research Center for Children and
-            Adolescents' Health and Diseases and Children's Hospital of Chongqing Medical
-            University. His research focuses on severe pediatric infections and the
-            development of artificial intelligence-based clinical models. He has published
-            13 SCI-indexed articles as first author.
-
-            **Hongmin Fu, MD, PhD**
-
-            Professor and doctoral supervisor at the Affiliated Children's Hospital of
-            Kunming Medical University. He serves as Chair of the Pediatric Society of
-            Yunnan Medical Association and Director of the Critical Care Collaborative Group
-            of the Respiratory Society of the Chinese Medical Association's Pediatric Branch.
-            His work focuses on pediatric respiratory critical care.
-
-            **Enmei Liu, MD, PhD**
-
-            Vice President of Chongqing Medical University, doctoral and postdoctoral
-            supervisor, and Chief Scientist of the National Key Research and Development
-            Program of China. Her research focuses on respiratory virus molecular
-            epidemiology, early-warning models, and pathogenesis in children.
-
-            **Na Zang, MD, PhD**
-
-            Chief physician and professor at the National Clinical Research Center for
-            Children and Adolescents' Health and Diseases and Children's Hospital of
-            Chongqing Medical University. Her research focuses on severe respiratory viral
-            infections in children, chronic cough, and allergic diseases.
-            """
-        )
+        # Uniform profile cards: identical 4:5 photos, consistent size and spacing.
+        for index, developer in enumerate(developers):
+            with st.container(border=True):
+                photo_col, text_col = st.columns([1, 5], gap="large", vertical_alignment="center")
+                with photo_col:
+                    photo_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), developer["photo"])
+                    if os.path.exists(photo_path):
+                        st.image(photo_path, width=145)
+                    else:
+                        st.warning(f"Photo file not found: {developer['photo']}")
+                with text_col:
+                    st.markdown(
+                        f"<div style='font-size:21px;font-weight:700;color:#223A57;margin-bottom:8px;'>{developer['name']}</div>",
+                        unsafe_allow_html=True
+                    )
+                    st.markdown(
+                        f"<div style='font-size:17px;line-height:1.65;color:#31445F;'>{developer['bio']}</div>",
+                        unsafe_allow_html=True
+                    )
+            if index < len(developers) - 1:
+                st.markdown("<div style='height:8px'></div>", unsafe_allow_html=True)
 
 
     st.divider()
