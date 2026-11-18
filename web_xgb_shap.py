@@ -764,7 +764,6 @@ div.stDownloadButton > button:hover {
                 if os.path.exists(definition_image_path):
                     st.image(
                         definition_image_path,
-                        caption="Pneumonia-related alveolar inflammation",
                         width=300
                     )
                 else:
@@ -803,31 +802,41 @@ div.stDownloadButton > button:hover {
         )
 
     with tab_validation:
-        st.markdown(
-            """
-            **External multi-center validation** was conducted in three representative large
-            tertiary-A specialist pediatric hospitals in other provinces (**Xi'an Children's
-            Hospital, n = 100; Kunming Children's Hospital, n = 100; Shenzhen Children's
-            Hospital, n = 250**) and a local primary general hospital in Chongqing
-            (**People's Hospital of Shapingba District, n = 100**).
-            """
-        )
+        # Match the developer-profile layout: map on the left, explanatory text on the right.
+        with st.container(border=True):
+            validation_map_path = os.path.join(
+                os.path.dirname(os.path.abspath(__file__)),
+                "validation_cohorts_map.png"
+            )
+            validation_map_col, validation_text_col = st.columns(
+                [1, 2], gap="large", vertical_alignment="center"
+            )
 
-        # 多中心验证医院分布图：适中尺寸居中展示
-        validation_map_path = os.path.join(
-            os.path.dirname(os.path.abspath(__file__)),
-            "validation_cohorts_map.png"
-        )
-        if os.path.exists(validation_map_path):
-            map_left, map_center, map_right = st.columns([1.5, 7, 1.5])
-            with map_center:
-                st.image(
-                    validation_map_path,
-                    caption="Geographical distribution of the external validation hospitals",
-                    width=680
+            with validation_map_col:
+                if os.path.exists(validation_map_path):
+                    st.image(
+                        validation_map_path,
+                        width=300
+                    )
+                else:
+                    st.warning("Image file not found: validation_cohorts_map.png")
+
+            with validation_text_col:
+                st.markdown(
+                    """
+                    **External multi-center validation** was conducted in three
+                    representative large tertiary-A specialist pediatric hospitals
+                    in other provinces:
+
+                    - **Xi'an Children's Hospital:** n = 100
+                    - **Kunming Children's Hospital:** n = 100
+                    - **Shenzhen Children's Hospital:** n = 250
+
+                    It also included a local primary general hospital in Chongqing:
+
+                    - **People's Hospital of Shapingba District:** n = 100
+                    """
                 )
-        else:
-            st.warning("Image file not found: validation_cohorts_map.png")
 
 
     with tab_developers:
