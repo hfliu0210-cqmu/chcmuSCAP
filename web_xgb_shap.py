@@ -759,6 +759,23 @@ div.stDownloadButton > button:hover {
             """
         )
 
+        # CAP/SCAP医学示意图：居中展示，限制宽度以适配模块内容
+        definition_image_path = os.path.join(
+            os.path.dirname(os.path.abspath(__file__)),
+            "definition_cap_scap.png"
+        )
+        if os.path.exists(definition_image_path):
+            image_left, image_center, image_right = st.columns([1, 8, 1])
+            with image_center:
+                st.image(
+                    definition_image_path,
+                    caption="Illustration of pneumonia-related alveolar inflammation",
+                    width=780
+                )
+        else:
+            st.warning("Image file not found: definition_cap_scap.png")
+
+
     with tab_development:
         st.markdown(
             """
@@ -783,6 +800,23 @@ div.stDownloadButton > button:hover {
             (**People's Hospital of Shapingba District, n = 100**).
             """
         )
+
+        # 多中心验证医院分布图：适中尺寸居中展示
+        validation_map_path = os.path.join(
+            os.path.dirname(os.path.abspath(__file__)),
+            "validation_cohorts_map.png"
+        )
+        if os.path.exists(validation_map_path):
+            map_left, map_center, map_right = st.columns([1.5, 7, 1.5])
+            with map_center:
+                st.image(
+                    validation_map_path,
+                    caption="Geographical distribution of the external validation hospitals",
+                    width=680
+                )
+        else:
+            st.warning("Image file not found: validation_cohorts_map.png")
+
 
     with tab_developers:
         developers = [
