@@ -752,8 +752,8 @@ div.stDownloadButton > button:hover {
     with tab_definition:
         st.markdown(
             """
-            The diagnosis of CAP and its clinical severity classification (SCAP or NSCAP)
-            were performed according to the World Health Organization guideline.
+            **The diagnosis of CAP and its clinical severity classification (SCAP or NSCAP)**
+            were performed according to the **World Health Organization guideline**.
             Ref: World Health Organization. Revised WHO classification and treatment of pneumonia in children
             at health facilities: evidence summaries, quick reference guide. Geneva: World Health Organization. 2014
             """
