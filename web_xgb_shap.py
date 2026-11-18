@@ -757,14 +757,14 @@ div.stDownloadButton > button:hover {
                 "definition_cap_scap.png"
             )
             definition_image_col, definition_text_col = st.columns(
-                [1, 2], gap="large", vertical_alignment="center"
+                [1.15, 2], gap="large", vertical_alignment="center"
             )
 
             with definition_image_col:
                 if os.path.exists(definition_image_path):
                     st.image(
                         definition_image_path,
-                        width=300
+                        width=440
                     )
                 else:
                     st.warning("Image file not found: definition_cap_scap.png")
@@ -809,14 +809,14 @@ div.stDownloadButton > button:hover {
                 "validation_cohorts_map.png"
             )
             validation_map_col, validation_text_col = st.columns(
-                [1, 2], gap="large", vertical_alignment="center"
+                [1.15, 2], gap="large", vertical_alignment="center"
             )
 
             with validation_map_col:
                 if os.path.exists(validation_map_path):
                     st.image(
                         validation_map_path,
-                        width=300
+                        width=440
                     )
                 else:
                     st.warning("Image file not found: validation_cohorts_map.png")
