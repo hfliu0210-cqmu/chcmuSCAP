@@ -776,7 +776,7 @@ div.stDownloadButton > button:hover {
     with tab_validation:
         st.markdown(
             """
-            External multi-center validation was conducted in three representative large
+            **External multi-center validation** was conducted in three representative large
             tertiary-A specialist pediatric hospitals in other provinces (**Xi'an Children's
             Hospital, n = 100; Kunming Children's Hospital, n = 100; Shenzhen Children's
             Hospital, n = 250**) and a local primary general hospital in Chongqing
