@@ -754,7 +754,7 @@ div.stDownloadButton > button:hover {
         with st.container(border=True):
             definition_image_path = os.path.join(
                 os.path.dirname(os.path.abspath(__file__)),
-                "definition_cap_scap.png"
+                "definition.png"
             )
             definition_image_col, definition_text_col = st.columns(
                 [1.15, 2], gap="large", vertical_alignment="center"
@@ -767,7 +767,7 @@ div.stDownloadButton > button:hover {
                         width=440
                     )
                 else:
-                    st.warning("Image file not found: definition_cap_scap.png")
+                    st.warning("Image file not found: definition.png")
 
             with definition_text_col:
                 st.markdown(
@@ -806,7 +806,7 @@ div.stDownloadButton > button:hover {
         with st.container(border=True):
             validation_map_path = os.path.join(
                 os.path.dirname(os.path.abspath(__file__)),
-                "validation_cohorts_map.png"
+                "validation.png"
             )
             validation_map_col, validation_text_col = st.columns(
                 [1.15, 2], gap="large", vertical_alignment="center"
@@ -819,7 +819,7 @@ div.stDownloadButton > button:hover {
                         width=440
                     )
                 else:
-                    st.warning("Image file not found: validation_cohorts_map.png")
+                    st.warning("Image file not found: validation.png")
 
             with validation_text_col:
                 st.markdown(
