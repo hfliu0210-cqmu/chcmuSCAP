@@ -877,32 +877,27 @@ div.stDownloadButton > button:hover {
             }
         ]
 
-        # Author profile cards: large portrait on the left and biography on the right.
-        # Photo dimensions are consistent (4:5 source images); display width matches the reference layout.
+        # Uniform profile cards: identical 4:5 photos, consistent size and spacing.
         for index, developer in enumerate(developers):
             with st.container(border=True):
-                photo_col, text_col = st.columns(
-                    [2, 3], gap="large", vertical_alignment="center"
-                )
+                photo_col, text_col = st.columns([1, 5], gap="large", vertical_alignment="center")
                 with photo_col:
-                    photo_path = os.path.join(
-                        os.path.dirname(os.path.abspath(__file__)), developer["photo"]
-                    )
+                    photo_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), developer["photo"])
                     if os.path.exists(photo_path):
-                        st.image(photo_path, width=290)
+                        st.image(photo_path, width=145)
                     else:
                         st.warning(f"Photo file not found: {developer['photo']}")
                 with text_col:
                     st.markdown(
-                        f"<div style='font-size:28px;font-weight:700;color:#223A57;margin-bottom:18px;'>{developer['name']}</div>",
+                        f"<div style='font-size:21px;font-weight:700;color:#223A57;margin-bottom:8px;'>{developer['name']}</div>",
                         unsafe_allow_html=True
                     )
                     st.markdown(
-                        f"<div style='font-size:21px;line-height:1.65;color:#31445F;'>{developer['bio']}</div>",
+                        f"<div style='font-size:17px;line-height:1.65;color:#31445F;'>{developer['bio']}</div>",
                         unsafe_allow_html=True
                     )
             if index < len(developers) - 1:
-                st.markdown("<div style='height:12px'></div>", unsafe_allow_html=True)
+                st.markdown("<div style='height:8px'></div>", unsafe_allow_html=True)
 
 
     st.divider()
