@@ -750,30 +750,42 @@ div.stDownloadButton > button:hover {
     ])
 
     with tab_definition:
-        st.markdown(
-            """
-            **The diagnosis of CAP and its clinical severity classification (SCAP or NSCAP)**
-            were performed according to the **World Health Organization guideline**.
-            Ref: World Health Organization. Revised WHO classification and treatment of pneumonia in children
-            at health facilities: evidence summaries, quick reference guide. Geneva: World Health Organization. 2014
-            """
-        )
+        # Match the developer-profile layout: image on the left, explanatory text on the right.
+        with st.container(border=True):
+            definition_image_path = os.path.join(
+                os.path.dirname(os.path.abspath(__file__)),
+                "definition_cap_scap.png"
+            )
+            definition_image_col, definition_text_col = st.columns(
+                [1, 2], gap="large", vertical_alignment="center"
+            )
 
-        # CAP/SCAP医学示意图：居中展示，限制宽度以适配模块内容
-        definition_image_path = os.path.join(
-            os.path.dirname(os.path.abspath(__file__)),
-            "definition_cap_scap.png"
-        )
-        if os.path.exists(definition_image_path):
-            image_left, image_center, image_right = st.columns([1, 8, 1])
-            with image_center:
-                st.image(
-                    definition_image_path,
-                    caption="Illustration of pneumonia-related alveolar inflammation",
-                    width=780
+            with definition_image_col:
+                if os.path.exists(definition_image_path):
+                    st.image(
+                        definition_image_path,
+                        caption="Pneumonia-related alveolar inflammation",
+                        width=300
+                    )
+                else:
+                    st.warning("Image file not found: definition_cap_scap.png")
+
+            with definition_text_col:
+                st.markdown(
+                    """
+                    **The diagnosis of community-acquired pneumonia (CAP) and its
+                    clinical severity classification (severe CAP [SCAP] or
+                    non-severe CAP [NSCAP])** were performed according to the
+                    **World Health Organization guideline**.
+
+                    **Reference**
+
+                    World Health Organization. *Revised WHO classification and
+                    treatment of pneumonia in children at health facilities:
+                    evidence summaries, quick reference guide*. Geneva: World
+                    Health Organization; 2014.
+                    """
                 )
-        else:
-            st.warning("Image file not found: definition_cap_scap.png")
 
 
     with tab_development:
@@ -856,27 +868,32 @@ div.stDownloadButton > button:hover {
             }
         ]
 
-        # Uniform profile cards: identical 4:5 photos, consistent size and spacing.
+        # Author profile cards: large portrait on the left and biography on the right.
+        # Photo dimensions are consistent (4:5 source images); display width matches the reference layout.
         for index, developer in enumerate(developers):
             with st.container(border=True):
-                photo_col, text_col = st.columns([1, 5], gap="large", vertical_alignment="center")
+                photo_col, text_col = st.columns(
+                    [2, 3], gap="large", vertical_alignment="center"
+                )
                 with photo_col:
-                    photo_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), developer["photo"])
+                    photo_path = os.path.join(
+                        os.path.dirname(os.path.abspath(__file__)), developer["photo"]
+                    )
                     if os.path.exists(photo_path):
-                        st.image(photo_path, width=145)
+                        st.image(photo_path, width=290)
                     else:
                         st.warning(f"Photo file not found: {developer['photo']}")
                 with text_col:
                     st.markdown(
-                        f"<div style='font-size:21px;font-weight:700;color:#223A57;margin-bottom:8px;'>{developer['name']}</div>",
+                        f"<div style='font-size:28px;font-weight:700;color:#223A57;margin-bottom:18px;'>{developer['name']}</div>",
                         unsafe_allow_html=True
                     )
                     st.markdown(
-                        f"<div style='font-size:17px;line-height:1.65;color:#31445F;'>{developer['bio']}</div>",
+                        f"<div style='font-size:21px;line-height:1.65;color:#31445F;'>{developer['bio']}</div>",
                         unsafe_allow_html=True
                     )
             if index < len(developers) - 1:
-                st.markdown("<div style='height:8px'></div>", unsafe_allow_html=True)
+                st.markdown("<div style='height:12px'></div>", unsafe_allow_html=True)
 
 
     st.divider()
