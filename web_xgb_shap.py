@@ -764,6 +764,7 @@ div.stDownloadButton > button:hover {
                 if os.path.exists(definition_image_path):
                     st.image(
                         definition_image_path,
+                        caption="Pneumonia-related alveolar inflammation",
                         width=300
                     )
                 else:
@@ -821,7 +822,8 @@ div.stDownloadButton > button:hover {
             map_left, map_center, map_right = st.columns([1.5, 7, 1.5])
             with map_center:
                 st.image(
-                    validation_map_path",
+                    validation_map_path,
+                    caption="Geographical distribution of the external validation hospitals",
                     width=680
                 )
         else:
