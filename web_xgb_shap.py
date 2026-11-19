@@ -804,7 +804,7 @@ div.stDownloadButton > button:hover {
     with tab_validation:
         # Match the developer-profile layout: map on the left, explanatory text on the right.
         with st.container(border=True):
-            validation_map_path = os.path.join(
+            cohort_map_path = os.path.join(
                 os.path.dirname(os.path.abspath(__file__)),
                 "cohort.png"
             )
