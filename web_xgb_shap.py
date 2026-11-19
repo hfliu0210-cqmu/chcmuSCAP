@@ -816,7 +816,7 @@ div.stDownloadButton > button:hover {
                 if os.path.exists(cohort_map_path):
                     st.image(
                         cohort_map_path,
-                        width=440
+                        width=600
                     )
                 else:
                     st.warning("Image file not found: cohort.png")
