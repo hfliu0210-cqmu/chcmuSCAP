@@ -804,22 +804,22 @@ div.stDownloadButton > button:hover {
     with tab_validation:
         # Match the developer-profile layout: map on the left, explanatory text on the right.
         with st.container(border=True):
-            cohort_map_path = os.path.join(
+            cohorts_map_path = os.path.join(
                 os.path.dirname(os.path.abspath(__file__)),
-                "cohort.png"
+                "cohorts.png"
             )
             validation_map_col, validation_text_col = st.columns(
                 [1.15, 2], gap="large", vertical_alignment="center"
             )
 
             with validation_map_col:
-                if os.path.exists(cohort_map_path):
+                if os.path.exists(cohorts_map_path):
                     st.image(
                         cohort_map_path,
-                        width=600
+                        width=500
                     )
                 else:
-                    st.warning("Image file not found: cohort.png")
+                    st.warning("Image file not found: cohorts.png")
 
             with validation_text_col:
                 st.markdown(
