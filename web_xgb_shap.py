@@ -50,7 +50,7 @@ plt.switch_backend("Agg")
 
 CONFIG = {
 
-    "dpi": 300,
+    "dpi": 500,
 
     "formats": ["png"],
 
