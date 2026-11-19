@@ -806,20 +806,20 @@ div.stDownloadButton > button:hover {
         with st.container(border=True):
             validation_map_path = os.path.join(
                 os.path.dirname(os.path.abspath(__file__)),
-                "validation.png"
+                "cohort.png"
             )
             validation_map_col, validation_text_col = st.columns(
                 [1.15, 2], gap="large", vertical_alignment="center"
             )
 
             with validation_map_col:
-                if os.path.exists(validation_map_path):
+                if os.path.exists(cohort_map_path):
                     st.image(
-                        validation_map_path,
+                        cohort_map_path,
                         width=440
                     )
                 else:
-                    st.warning("Image file not found: validation.png")
+                    st.warning("Image file not found: cohort.png")
 
             with validation_text_col:
                 st.markdown(
@@ -828,7 +828,7 @@ div.stDownloadButton > button:hover {
                     representative large tertiary-A specialist pediatric hospitals
                     in other provinces:
 
-                    - **Xi'an Children's Hospital:** n = 100
+                    - **Xian Children's Hospital:** n = 100
                     - **Kunming Children's Hospital:** n = 100
                     - **Shenzhen Children's Hospital:** n = 250
 
