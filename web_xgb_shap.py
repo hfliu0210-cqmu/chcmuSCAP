@@ -815,7 +815,7 @@ div.stDownloadButton > button:hover {
             with validation_map_col:
                 if os.path.exists(cohorts_map_path):
                     st.image(
-                        cohort_map_path,
+                        cohorts_map_path,
                         width=500
                     )
                 else:
