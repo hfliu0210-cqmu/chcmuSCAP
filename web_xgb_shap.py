@@ -809,14 +809,14 @@ div.stDownloadButton > button:hover {
                 "cohorts.png"
             )
             validation_map_col, validation_text_col = st.columns(
-                [1.15, 2], gap="large", vertical_alignment="center"
+                [1, 1.3], gap="large", vertical_alignment="center"
             )
 
             with validation_map_col:
                 if os.path.exists(cohorts_map_path):
                     st.image(
                         cohorts_map_path,
-                        width=500
+                        width=600
                     )
                 else:
                     st.warning("Image file not found: cohorts.png")
